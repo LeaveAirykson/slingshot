@@ -1,0 +1,25 @@
+{
+  "name": "slingshot-node",
+  "version": "0.0.1",
+  "description": "A simple deployment tool which uses SSH and git.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+ssh://git@github.com/LeaveAirykson/slingshot.git"
+  },
+  "keywords": [
+    "ssh-deployment",
+    "deployment",
+    "deploytool",
+    "deployment-tool"
+  ],
+  "author": "Leave Airykson",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/LeaveAirykson/slingshot/issues"
+  },
+  "homepage": "https://github.com/LeaveAirykson/slingshot#readme"
+}
