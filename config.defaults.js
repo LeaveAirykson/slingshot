@@ -1,19 +1,23 @@
+/**
+ * SlingshotConfig
+ *
+ * @var {object}
+ * @prop {string} host
+ * @prop {string} username
+ * @prop {string} password
+ */
 module.exports = {
   host: null,
   username: null,
   password: null,
-  privateKey: null,
+  privateKeyPath: null,
   deployTo: null,
   symlink: 'current',
-  git: null,
   revision: 'master',
-  workspace: '/tmp/slingshot',
   keepReleases: 3,
   exclude: [],
   include: [],
   port: 22,
-  beforeDeploy: () => Promise.resolve(),
-  afterDeploy: () => Promise.resolve(),
 };
 
 // Rules:
