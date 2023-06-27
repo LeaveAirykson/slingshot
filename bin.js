@@ -33,7 +33,6 @@ pathsToLookForConfig.forEach((p) => {
 
 // default configs
 let config = require('./config.defaults');
-const logger = require('./src/logger');
 
 // merge defaults with found config
 if (configpath) {
@@ -59,8 +58,7 @@ require('yargs/yargs')(process.argv.slice(2))
       throw new Error(`Config file not found: ${configpath}`);
     }
 
-    const loadedconfig = require(configpath);
-    sling.set('config', { ...config, ...loadedconfig });
+    sling.set('config', require(configpath));
   })
   .command('init', 'Create slingshot config file.')
   .command(
