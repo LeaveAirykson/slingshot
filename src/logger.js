@@ -4,7 +4,8 @@ const colors = require('./cli-colors');
 const { performance } = require('perf_hooks');
 
 const icons = {
-  task: '☕',
+  task: '⏵',
+  task2: '☕',
   step: '↪',
   success: '♥',
   event: '★',
@@ -14,34 +15,42 @@ const icons = {
 
 const logger = {
   current: '',
+  showTime: false,
   time: {
     start: null,
     end: null,
   },
   _o: function (out, newline = '') {
-    const date = new Date();
-    const h = String(date.getHours()).padStart(2, '0');
-    const m = String(date.getMinutes()).padStart(2, '0');
-    const s = String(date.getSeconds()).padStart(2, '0');
-    const d = `${colors.reset}${colors.dim}[${h}:${m}:${s}]${colors.reset}`;
-    console.log(`${newline}${d} ${out}${colors.reset}`);
+    let msg = `${newline}${out}${colors.reset}`;
+
+    if (this.showTime) {
+      const date = new Date();
+      const h = String(date.getHours()).padStart(2, '0');
+      const m = String(date.getMinutes()).padStart(2, '0');
+      const s = String(date.getSeconds()).padStart(2, '0');
+      const d = `${colors.reset}${colors.dim}[${h}:${m}:${s}]${colors.reset}`;
+
+      msg = `${newline}${d} ${out}${colors.reset}`;
+    }
+
+    console.log(msg);
   },
   task: function (txt) {
     this.current = txt;
     this.time.start = performance.now();
-    this._o(`${colors.yellow}${icons.task} ${txt}`, `\n`);
+    this._o(`${colors.yellow}${icons.task} run ${txt}`, `\n`);
   },
-  step: function (txt, int = 1) {
+  step: function (txt, int = 0) {
     let intent = ' '.repeat(int);
     this._o(`${intent}${colors.yellow}${icons.step}${colors.dim} ${txt}`);
   },
-  stepsuccess: function (txt, int = 1) {
+  stepsuccess: function (txt, int = 0) {
     let intent = ' '.repeat(int);
-    this._o(`${intent}${colors.green}${icons.success2}${colors.dim} ${txt}`);
+    this._o(`${intent}${colors.green}${icons.success2}${colors.reset} ${txt}`);
   },
-  steperror: function (txt, int = 1) {
+  steperror: function (txt, int = 0) {
     let intent = ' '.repeat(int);
-    this._o(`${intent}${colors.red}${icons.error}${colors.dim} ${txt}`);
+    this._o(`${intent}${colors.red}${icons.error} ${txt}`);
   },
   log: function (txt) {
     this._o(`${txt}`);
