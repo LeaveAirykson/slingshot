@@ -1,6 +1,10 @@
 const path = require('path');
 
 function resolveHomePath(filepath) {
+  if (!filepath) {
+    return filepath;
+  }
+
   let finalpath = filepath;
   const splitpath = filepath.split('~');
 
