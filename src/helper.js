@@ -11,4 +11,8 @@ function resolveHomePath(filepath) {
   return finalpath;
 }
 
-module.exports = { resolveHomePath };
+function isFn(a) {
+  return typeof a === 'function';
+}
+
+module.exports = { resolveHomePath, isFn };
